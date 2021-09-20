@@ -15,3 +15,16 @@ let compute = (x, y) => {
 console.log("compute: ", compute(4, 5));
 compute = (x, y) => x * y;
 console.log("compute: ", compute(4, 5));
+var obj = {
+    id: 100,
+    print: function () {
+        console.log("Id: ", this.id);
+        // setTimeout(function(){
+        //     console.log("Id after 2secs: ", this.id);
+        // }, 2000);
+        setTimeout(() => {
+            console.log("Id after 2secs: ", this.id);
+        }, 2000);
+    }
+};
+obj.print();

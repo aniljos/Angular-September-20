@@ -18,6 +18,13 @@
 1. AngularJS (1.x): https://angularjs.org/
 2. Angular (> 2.x): https://angular.io/
 
+### Tool Chain
+
+1. Integrates multiple tools and libraries which assist in the build, testing and deploy
 
 
+### .npmrc
+
+1. Configure the proxy setting
+2. Custom repository
 
