@@ -28,3 +28,16 @@
 1. Configure the proxy setting
 2. Custom repository
 
+### Modules
+
+1. ES6 Module
+2. Angular Modules
+
+### Decorator
+
+1. ES6 Feature
+2. Metadata
+3. Similar Annotations or Attributes
+4. 
+
+
