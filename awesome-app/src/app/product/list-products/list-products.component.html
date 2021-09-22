@@ -16,18 +16,46 @@
             <th>Name</th>
             <th>Price</th>
             <th>Description</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
         <!-- Iterate over data and generate <tr> for each item -->
         <!--  ngFor is based on the for-of(ES6) -->
-        <tr *ngFor="let item of data; index as i; even as even; odd as odd " 
+        <tr *ngFor="let item of data | productFilter : searchKey; index as i; even as even; odd as odd " 
                                                         [ngClass]="{oddCls: odd, evenCls: even}">
             <td>{{i}}</td>
             <td>{{item.id}}</td>
             <td>{{item.name}}</td>
             <td>{{item.price | currency : 'INR'}}</td>
             <td>{{item.description}}</td>
+            <td>
+                <button (click)="edit(item)">Edit</button> &nbsp;
+                <button (click)="delete(item)">Delete</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button (click)="save()">Save</button>
+            </td>
+            <td>
+                <input type="number" placeholder="ID" [(ngModel)]="nProduct.id" 
+                                                                [ngModelOptions]="{updateOn: 'change'}"/>
+            </td>
+            <td>
+                <input type="text" placeholder="Name" [(ngModel)]="nProduct.name"/>
+            </td>
+            <td>
+                <input type="number" placeholder="Price" [(ngModel)]="nProduct.price"/>
+            </td>
+            <td>
+                <input type="text" placeholder="Description" [(ngModel)]="nProduct.description"/>
+            </td>
         </tr>
     </tbody>
 </table>
+<!-- {{nProduct | json}} -->
+
+<div *ngIf="selectedProduct">
+    <app-edit-product></app-edit-product>
+</div>
