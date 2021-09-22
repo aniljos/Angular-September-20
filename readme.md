@@ -28,16 +28,34 @@
 1. Configure the proxy setting
 2. Custom repository
 
-### Modules
+### Types of Modules
 
 1. ES6 Module
 2. Angular Modules
+
+### Angular Modules
+
+1. Bootstrap Module- One per application
+2. Modules provided by Angular
+3. Lirary: 3rd Party Modules
 
 ### Decorator
 
 1. ES6 Feature
 2. Metadata
 3. Similar Annotations or Attributes
-4. 
+   
+### Template
+
+1. Template is compiled and converted a View
+2. In Angular 1.x this compilation happes in the browser
+3. Angular 2 onwards has the AOT Compilation
+4. Angular 8 introduced the Ivy compiler
+
+### Async
+
+1. Callbacks
+2. Promises
+3. Observables(RxJs)--Reactive
 
 
