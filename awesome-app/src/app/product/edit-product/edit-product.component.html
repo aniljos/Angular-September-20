@@ -1,21 +1,40 @@
 <h5>Edit Product : ID-{{currentProduct.id}}</h5>
 
-
-<fieldset>
-    <div>
-        <p>Name</p>
-        <input [(ngModel)]="temp.name"/>
-    </div>
-    <div>
-        <p>Price</p>
-        <input type="number" [(ngModel)]="temp.price"/>
-    </div>
-    <div>
-        <p>Description</p>
-        <input  [(ngModel)]="temp.description"/>
-    </div>
-    <div>
-        <button (click)="save();">Save</button> &nbsp;
-        <button (click)="cancel();">Cancel</button>
-    </div>
-</fieldset>
+<!-- FormGroup -->
+<form #productForm="ngForm">
+    <fieldset>
+        <div>
+            <p>Name</p>
+            <!-- FormControl -->
+            <input [(ngModel)]="temp.name" name="pname" #name="ngModel" 
+                        required pattern="[a-zA-Z0-9]{3,}"/>
+            <div [hidden]="!name.hasError('required')">
+                The field is required
+            </div>
+            <div  [hidden]="!name.hasError('pattern')">
+                Only Characters and numbers allowed(3 min)
+            </div>
+        </div>
+        <div>
+            <p>Price</p>
+             <!-- FormControl -->
+            <input type="number" [(ngModel)]="temp.price" 
+                        name="pprice" #price="ngModel" required/>
+            <div [hidden]="price.valid">
+                The field is required
+            </div>
+        </div>
+        <div>
+            <p>Description</p>
+             <!-- FormControl -->
+            <input [(ngModel)]="temp.description" name="ppdesc" #desc="ngModel" required/>
+            <div [hidden]="desc.valid">
+                The field is required
+            </div>
+        </div>
+        <div>
+            <button (click)="save();" [disabled]="productForm.pristine || productForm.invalid">Save</button> &nbsp;
+            <button (click)="cancel();">Cancel</button>
+        </div>
+    </fieldset>
+</form>
