@@ -1,21 +1,21 @@
-<h5>Edit Product</h5>
+<h5>Edit Product : ID-{{currentProduct.id}}</h5>
 
 
 <fieldset>
     <div>
         <p>Name</p>
-        <input />
+        <input [(ngModel)]="temp.name"/>
     </div>
     <div>
         <p>Price</p>
-        <input type="number"/>
+        <input type="number" [(ngModel)]="temp.price"/>
     </div>
     <div>
         <p>Description</p>
-        <input />
+        <input  [(ngModel)]="temp.description"/>
     </div>
     <div>
-        <button>Save</button> &nbsp;
-        <button>Cancel</button>
+        <button (click)="save();">Save</button> &nbsp;
+        <button (click)="cancel();">Cancel</button>
     </div>
 </fieldset>

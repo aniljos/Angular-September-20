@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { Product } from '../../model/product';
 
 @Component({
@@ -7,7 +7,7 @@ import { Product } from '../../model/product';
   templateUrl: './list-products.component.html',
   styleUrls: ['./list-products.component.css']
 })
-export class ListProductsComponent implements OnInit {
+export class ListProductsComponent implements OnInit, OnChanges {
 
   private url: string;
   public data: Array<Product>;
@@ -23,6 +23,9 @@ export class ListProductsComponent implements OnInit {
 
     this.fetch();
 
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log("ListProductsComponent: ngOnChanges", changes);
   }
 
   ngOnInit(): void {
@@ -83,6 +86,26 @@ export class ListProductsComponent implements OnInit {
 
   edit(product: Product){
     this.selectedProduct = product;
+  }
+
+  editUpdated(product: Product){
+
+    var url = this.url + "/" + product.id;
+    this.http
+        .put(url, product)
+        .subscribe(() => {
+
+          this.selectedProduct = null;
+          this.fetch();
+
+        }, () => {
+          alert("Failed to update");
+        })
+  }
+
+  editCancelled(message: string){
+    alert(message);
+    this.selectedProduct = null;
   }
 
 

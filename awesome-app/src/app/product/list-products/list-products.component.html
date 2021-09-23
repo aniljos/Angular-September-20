@@ -57,5 +57,8 @@
 <!-- {{nProduct | json}} -->
 
 <div *ngIf="selectedProduct">
-    <app-edit-product></app-edit-product>
+    <app-edit-product 
+            [currentProduct]="selectedProduct" 
+            (saved)="editUpdated($event)"
+            (cancelled)="editCancelled($event)"></app-edit-product>
 </div>
