@@ -58,4 +58,26 @@
 2. Promises
 3. Observables(RxJs)--Reactive
 
+### Change Detection
+
+1. Angular observes all the elements & objects that are part of the data-binding
+2. Whenever a change is detected, Angular refresh/redener the UI
+3. Zone.js is used for the change detection
+
+### Observable
+
+1. Observable Stream
+2. Lazy -- need to call the subscribe
+3. Unicast -- only one subscriber
+
+### Subject(RxJS)
+
+1. Its an observable
+2. Multicast --  multiple subscriber
+3. BehaviouralSubject -- Initial value
+4. ReplaySubject -- has a buffer, replay the values to the new subscribers
+
+
+   
+
 
