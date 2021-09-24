@@ -5,7 +5,11 @@ import {HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ProductFilterPipe } from './product-filter.pipe';
 import { EditProductComponent } from './edit-product/edit-product.component';
+import {Routes, RouterModule} from '@angular/router';
 
+const routes: Routes = [
+  {path: "products", component: ListProductsComponent}
+]
 
 @NgModule({
   declarations: [
@@ -14,7 +18,10 @@ import { EditProductComponent } from './edit-product/edit-product.component';
     EditProductComponent
   ],
   imports: [
-    CommonModule, HttpClientModule, FormsModule
+    CommonModule, 
+    HttpClientModule, 
+    FormsModule,
+    RouterModule.forChild(routes)
   ],
   exports: [ListProductsComponent]
 })

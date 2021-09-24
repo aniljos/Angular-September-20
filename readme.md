@@ -77,6 +77,22 @@
 3. BehaviouralSubject -- Initial value
 4. ReplaySubject -- has a buffer, replay the values to the new subscribers
 
+### Single-Page Application
+
+1. There is only one page(index.html) 
+2. Page had renders views(components)
+3. Navigation is between the views(component)
+
+### Router Modules & Routes 
+
+1. Navigation between routes
+2. Manages the history
+3. Child Routes
+4. Lazy-loading of modules
+5. Router Guards
+6. Navigation events
+   
+
 
    
 

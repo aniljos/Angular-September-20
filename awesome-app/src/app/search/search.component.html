@@ -5,9 +5,14 @@
 <div [formGroup]="searchFormGroup">
      <input type="text" placeholder="Search" [formControlName]="'search'" /> <!--Form Control -->
 
-        
+
 </div>
 
-<div *ngFor="let item of results">
+<!-- <div *ngFor="let item of results">
+    <p>{{item}}</p>
+</div> -->
+
+
+<div *ngFor="let item of $results | async">
     <p>{{item}}</p>
 </div>

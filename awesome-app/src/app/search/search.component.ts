@@ -13,6 +13,7 @@ export class SearchComponent implements OnInit {
 
   public searchFormGroup: FormGroup;
   public results: Array<string> = [];
+  public $results: Observable<Array<string>> = new Observable();
 
   constructor(private http: HttpClient) { 
 
@@ -99,17 +100,23 @@ export class SearchComponent implements OnInit {
 
 
                             // Http call returns the data(response.body) mapped to a custom type
-                            this.http
+                          //   this.http
+                          //         .get<Array<any>>(url, {params: httpParams})
+                          //         .pipe(
+                          //           map(data => data[1])
+                          //         )
+                          //         .subscribe((data) => {
+                          //           console.log(data);
+                          //           this.results = data;
+                          //         });
+                          // });
+
+
+                          this.$results = this.http
                                   .get<Array<any>>(url, {params: httpParams})
                                   .pipe(
                                     map(data => data[1])
                                   )
-                                  .subscribe((data) => {
-                                    console.log(data);
-                                    this.results = data;
-                                  });
-
-                          
                           });
             
 
