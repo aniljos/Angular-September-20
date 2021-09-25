@@ -6,28 +6,33 @@
         <div>
             <p>Name</p>
             <!-- FormControl -->
-            <input [(ngModel)]="temp.name" name="pname" #name="ngModel" 
-                        required pattern="[a-zA-Z0-9]{3,}"/>
+            <!-- <input [(ngModel)]="temp.name" name="pname" #name="ngModel" 
+                        required pattern="[a-zA-Z0-9]{3,}" appForbiddenValues="abc,xyz,aaa"/> -->
+            <input [(ngModel)]="temp.name" name="pname" #name="ngModel" required pattern="[a-zA-Z0-9]{3,}"
+                [appForbiddenValues]="theForbiddenValues" />
+                
             <div [hidden]="!name.hasError('required')">
                 The field is required
             </div>
-            <div  [hidden]="!name.hasError('pattern')">
+            <div [hidden]="!name.hasError('pattern')">
                 Only Characters and numbers allowed(3 min)
+            </div>
+            <div [hidden]="!name.hasError('forbiddenValues')">
+                This name is forbidden
             </div>
         </div>
         <div>
             <p>Price</p>
-             <!-- FormControl -->
-            <input type="number" [(ngModel)]="temp.price" 
-                        name="pprice" #price="ngModel" required/>
+            <!-- FormControl -->
+            <input type="number" [(ngModel)]="temp.price" name="pprice" #price="ngModel" required />
             <div [hidden]="price.valid">
                 The field is required
             </div>
         </div>
         <div>
             <p>Description</p>
-             <!-- FormControl -->
-            <input [(ngModel)]="temp.description" name="ppdesc" #desc="ngModel" required/>
+            <!-- FormControl -->
+            <input [(ngModel)]="temp.description" name="ppdesc" #desc="ngModel" required />
             <div [hidden]="desc.valid">
                 The field is required
             </div>

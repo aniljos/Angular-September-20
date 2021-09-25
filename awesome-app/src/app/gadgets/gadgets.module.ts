@@ -4,6 +4,7 @@ import { GadgetsHomeComponent } from './gadgets-home/gadgets-home.component';
 import { ViewProductsComponent } from './view-products/view-products.component';
 import { ViewCartComponent } from './view-cart/view-cart.component';
 import {Routes, RouterModule} from "@angular/router";
+import { CartService } from './cart.service';
 
 const routes: Routes = [
   {path: "gadgets", component: GadgetsHomeComponent, children: [
@@ -20,6 +21,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes)
-  ]
+  ],
+  //providers: [{provide: CartService, useClass: CartService}]
+  providers: [CartService]
 })
 export class GadgetsModule { }

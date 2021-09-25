@@ -10,10 +10,12 @@ import {AppValidators} from '../../app-shared/AppValidators';
 export class RegisterComponent implements OnInit {
 
   public formGroup: FormGroup;
-  constructor() { 
+  constructor(private appValidator: AppValidators) { 
 
     this.formGroup = new FormGroup({
-      name: new FormControl("", [Validators.required, Validators.minLength(3)]),
+      name: new FormControl("", [Validators.required, 
+              Validators.minLength(3), AppValidators.forbiddenValues(["admin", "manager"])], 
+                    [appValidator.uniqueValue()]),
       email: new FormControl("", [Validators.required, Validators.email]),
       mobile: new FormControl("", [Validators.required, AppValidators.mobile()])
     });

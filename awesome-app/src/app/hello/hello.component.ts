@@ -4,7 +4,7 @@ import { Component } from "@angular/core";
 @Component({
     template: `
         <h4>Hello Component</h4>
-        <p>This is a simple component</p>
+        <p appHighlight="blue"  defaultColor="red">This is a simple component</p>
     `,
     selector: "hello"
 })

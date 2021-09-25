@@ -1,1 +1,21 @@
-<p>view-cart works!</p>
+<h4>Cart</h4>
+
+
+<div>
+    <div class="alert alert-primary" *ngIf="cart.length === 0">
+        The cart is empty
+    </div>
+
+    <div class="card" *ngFor="let item of cart">
+        <div class="card-header">
+            {{item.product?.name}}
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{item.product?.description}}</h5>
+            <p class="card-text">Price: {{item.product?.price | currency : 'INR'}}</p>
+            
+            <p class="card-text">Quantity: {{item.quantity}}</p>
+        </div>
+    </div>
+
+</div>

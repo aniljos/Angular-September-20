@@ -97,9 +97,18 @@
 
 1. Memory: Services(singleton)
 2. Memory: Redux(ngRx)
-3. Local Persistent: LocalStorgae/SessionSesstion ==> encrypt
+3. Local Persistent: LocalStorage/SessionStorage ==> encrypt
 4. Server Persistent: Backend
    
+
+### Custom Form Validators
+
+1. Validators(client) and AsyncValidators(async client & server)
+2. Validator: ValidatorFn
+3. AsyncValidato: AsyncValidatorFn
+4. Reactive Forms: Validators are functions, AsyncValidators(server) are services
+5. Templated Form : Validators are directive, AsyncValidators(server) are services & directive
+
 
 
    

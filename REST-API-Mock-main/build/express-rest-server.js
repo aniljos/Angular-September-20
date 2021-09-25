@@ -346,6 +346,12 @@ app.put("/secure_customers", function (req, resp) {
         resp.json(null);
     }
 });
+app.get("/unique/:value", (req, resp) => {
+    const value = req.params.value;
+    const names = ["abc", "xyz"];
+    const exists = names.includes(value);
+    resp.json({ exists });
+});
 app.listen(PORT, () => {
     console.log(`REST API running on port ${PORT} with process id: ${process.pid}`);
 });

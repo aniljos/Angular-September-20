@@ -1,1 +1,17 @@
-<p>view-products works!</p>
+<h3>Products</h3>
+
+
+<div>
+
+    <div class="card" *ngFor="let item of products">
+        <div class="card-header">
+            {{item.name}}
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{item.description}}</h5>
+            <p class="card-text">{{item.price | currency : 'INR'}}</p>
+            <button class="btn btn-primary" (click)="add(item)">Add To Cart</button>
+        </div>
+    </div>
+
+</div>

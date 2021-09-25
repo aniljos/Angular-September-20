@@ -20,7 +20,7 @@ export class EditProductComponent implements OnInit, OnChanges, OnDestroy {
   @Output()
   public cancelled: EventEmitter<string> = new EventEmitter<string>();
 
-
+  public theForbiddenValues="aaa,bbb,hello";
 
   constructor() { 
     console.log("EditProductComponent: constructor");

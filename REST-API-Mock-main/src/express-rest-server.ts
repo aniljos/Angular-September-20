@@ -430,10 +430,16 @@ app.put("/secure_customers", function(req, resp){
         resp.status(200);
         resp.json(null);
     }
-
-    
-
 })
+
+app.get("/unique/:value", (req, resp) => {
+    const value = req.params.value;
+
+    const names = ["abc", "xyz"];
+    const exists = names.includes(value);
+    resp.json({exists});
+})
+
 
 
 app.listen(PORT, () => {
