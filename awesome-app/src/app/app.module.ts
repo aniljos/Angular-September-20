@@ -14,6 +14,7 @@ import { GadgetsModule } from './gadgets/gadgets.module';
 import { DataService } from './services/DataService';
 import { DataServiceImpl } from './services/DataServiceImpl';
 import { AuthModule } from './auth/auth.module';
+import { AppSharedModule } from './app-shared/app-shared.module';
 
 //configure the routes(mapping of the routes(path) to the views(components))
 
@@ -40,7 +41,8 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(routes),
     GadgetsModule,
-    AuthModule
+    AuthModule,
+    AppSharedModule
   ],
   providers: [{provide: DataService, useClass: DataServiceImpl}],
   bootstrap: [AppComponent]

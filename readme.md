@@ -89,8 +89,16 @@
 2. Manages the history
 3. Child Routes
 4. Lazy-loading of modules
-5. Router Guards
+5. Router Guards: Implemented as service
 6. Navigation events
+
+
+### State
+
+1. Memory: Services(singleton)
+2. Memory: Redux(ngRx)
+3. Local Persistent: LocalStorgae/SessionSesstion ==> encrypt
+4. Server Persistent: Backend
    
 
 

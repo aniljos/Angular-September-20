@@ -1,1 +1,42 @@
-<p>register works!</p>
+<h4>Register</h4>
+
+<form [formGroup]="formGroup">
+    <div class="form-group">
+        <label class="form-label">Name</label>
+        <input class="form-control" formControlName="name"/>
+        <div class="alert alert-danger" *ngIf="formGroup.get('name')?.dirty && formGroup.get('name')?.hasError('required')">
+            The field is required
+        </div>
+        <div class="alert alert-danger" *ngIf="formGroup.get('name')?.dirty && formGroup.get('name')?.hasError('minlength')">
+            Minimum lenght of 3
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Email</label>
+        <input class="form-control" formControlName="email"/>
+        <div class="alert alert-danger" *ngIf="formGroup.get('email')?.dirty && formGroup.get('email')?.invalid">
+            The field should have a valid email
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Mobile</label>
+        <input type="number" class="form-control" formControlName="mobile"/>
+        <div class="alert alert-danger" *ngIf="formGroup.get('mobile')?.dirty && formGroup.get('mobile')?.hasError('required')">
+            The field is required
+        </div>
+        <div class="alert alert-danger" 
+                *ngIf="formGroup.get('mobile')?.dirty && formGroup.get('mobile')?.hasError('mobile')">
+            InvaLid Mobile No.
+        </div>
+
+    </div>
+
+
+
+    <div>
+        <button class="btn btn-primary" (click)="save()">Save</button>
+    </div>
+
+</form>
