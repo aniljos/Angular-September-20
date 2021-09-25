@@ -1,11 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { DataService } from '../../services/DataService';
 import { Product } from '../../model/product';
 
 @Component({
   selector: 'app-list-products',
   templateUrl: './list-products.component.html',
-  styleUrls: ['./list-products.component.css']
+  styleUrls: ['./list-products.component.css'],
+  
 })
 export class ListProductsComponent implements OnInit, OnChanges {
 
@@ -15,13 +17,15 @@ export class ListProductsComponent implements OnInit, OnChanges {
   public nProduct: Product;
   public selectedProduct: Product|null = null;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private dataService: DataService) {
 
     this.data = new Array<Product>();
     this.nProduct = new Product();
     this.url = "http://localhost:9000/products";
 
     this.fetch();
+
+    //this.dataService.fetch();
 
   }
   ngOnChanges(changes: SimpleChanges): void {
@@ -32,14 +36,24 @@ export class ListProductsComponent implements OnInit, OnChanges {
   }
 
   fetch() {
-    this.http
-      .get<Array<Product>>(this.url)
-      .subscribe((data) => {
-        console.log("in subscribe", data);
-        this.data = data;
-      }, (resp) => {
-        console.log("in subscribe failed", resp);
-      });
+
+    this.dataService
+            .fetch()
+            ?.subscribe((data) => {
+              this.data = data;
+            }, () => {
+              alert("Failed to fetch data");
+            })
+
+
+    // this.http
+    //   .get<Array<Product>>(this.url)
+    //   .subscribe((data) => {
+    //     console.log("in subscribe", data);
+    //     this.data = data;
+    //   }, (resp) => {
+    //     console.log("in subscribe failed", resp);
+    //   });
 
       // this.http
       // .get<any>(this.url)

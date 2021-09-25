@@ -8,7 +8,7 @@ import { EditProductComponent } from './edit-product/edit-product.component';
 import {Routes, RouterModule} from '@angular/router';
 
 const routes: Routes = [
-  {path: "products", component: ListProductsComponent}
+  {path: "", component: ListProductsComponent}
 ]
 
 @NgModule({
@@ -23,6 +23,7 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forChild(routes)
   ],
-  exports: [ListProductsComponent]
+  exports: [ListProductsComponent],
+  
 })
 export class ProductModule { }
