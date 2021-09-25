@@ -15,6 +15,10 @@ import { DataService } from './services/DataService';
 import { DataServiceImpl } from './services/DataServiceImpl';
 import { AuthModule } from './auth/auth.module';
 import { AppSharedModule } from './app-shared/app-shared.module';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { authReducer, cartReducer } from './store/reducers';
 
 //configure the routes(mapping of the routes(path) to the views(components))
 
@@ -42,7 +46,9 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     GadgetsModule,
     AuthModule,
-    AppSharedModule
+    AppSharedModule,
+    StoreModule.forRoot({auth: authReducer, cart: cartReducer}),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [{provide: DataService, useClass: DataServiceImpl}],
   bootstrap: [AppComponent]

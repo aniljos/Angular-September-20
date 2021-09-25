@@ -11,7 +11,11 @@ export class ViewCartComponent implements OnInit {
   public cart: Array<CartItem> = []
   constructor(private cartService: CartService) { 
     
-    this.cart = cartService.getCart();
+    //this.cart = cartService.getCart();
+
+    cartService.subject.subscribe((updatedCart) => {
+      this.cart = updatedCart;
+    })
 
   }
 

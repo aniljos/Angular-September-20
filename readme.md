@@ -95,7 +95,7 @@
 
 ### State
 
-1. Memory: Services(singleton)
+1. Memory: Services(singleton)  ==> Subjects for reactive
 2. Memory: Redux(ngRx)
 3. Local Persistent: LocalStorage/SessionStorage ==> encrypt
 4. Server Persistent: Backend

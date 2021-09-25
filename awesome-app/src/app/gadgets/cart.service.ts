@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ReplaySubject, Subject } from 'rxjs';
 import { Product } from '../model/product';
 
 // @Injectable({
@@ -14,11 +15,15 @@ export class CartItem{
 export class CartService {
 
   private cart: Array<CartItem> = [];
-  
+ // public subject: Subject<Array<CartItem>> = new Subject<Array<CartItem>>();
+  public subject: ReplaySubject<Array<CartItem>> = new ReplaySubject<Array<CartItem>>();
+
   constructor() { }
 
   addToCart(item: CartItem): void{
     this.cart.push(item);
+
+    this.subject.next([...this.cart]);
   }
 
   getCart(): Array<CartItem>{
