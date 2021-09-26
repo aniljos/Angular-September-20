@@ -1,6 +1,7 @@
 export interface AuthState{
     userName: string,
     accessToken: string,
+    refreshToken: string,
     isAuthenticated: boolean
 }
 export interface CartState{
@@ -8,7 +9,7 @@ export interface CartState{
 }
 
 const initAuthState: AuthState = {
-    userName: "", accessToken: "", isAuthenticated: false
+    userName: "", accessToken: "", isAuthenticated: false, refreshToken: ""
 }
 const initCartState: CartState = {
     cart: []
@@ -21,8 +22,15 @@ export const authReducer = (currentState=initAuthState, action: any) => {
         return {
             userName: action.payload.userName,
             isAuthenticated: action.payload.isAuthenticated,
-            accessToken: action.payload.accessToken
+            accessToken: action.payload.accessToken,
+            refreshToken: action.payload.refreshToken
         };
+    }
+    if(action.type === "UPDATE_ACCESS_TOKEN"){
+        return {
+            ...currentState,
+            accessToken: action.token
+        }
     }
 
     return currentState;

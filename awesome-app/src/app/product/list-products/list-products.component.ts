@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { DataService } from '../../services/DataService';
 import { Product } from '../../model/product';
+import { AuthState } from 'src/app/store/reducers';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-list-products',
@@ -16,8 +18,9 @@ export class ListProductsComponent implements OnInit, OnChanges {
   public searchKey: string = "";
   public nProduct: Product;
   public selectedProduct: Product|null = null;
+  private auth: AuthState| undefined;
 
-  constructor(private http: HttpClient, private dataService: DataService) {
+  constructor(private http: HttpClient, private dataService: DataService, private store: Store<{auth: AuthState}>) {
 
     this.data = new Array<Product>();
     this.nProduct = new Product();
@@ -26,6 +29,7 @@ export class ListProductsComponent implements OnInit, OnChanges {
     this.fetch();
 
     //this.dataService.fetch();
+    this.store.select(state => state.auth).subscribe(value => this.auth = value);
 
   }
   ngOnChanges(changes: SimpleChanges): void {
@@ -41,8 +45,18 @@ export class ListProductsComponent implements OnInit, OnChanges {
             .fetch()
             ?.subscribe((data) => {
               this.data = data;
-            }, () => {
+            }, (err) => {
               alert("Failed to fetch data");
+              // if response status is 403, get the new access token
+              this.http
+                    .post<any>("http://localhost:9000/refreshToken", {token: this.auth?.refreshToken})
+                    .subscribe((result) => {
+
+                        this.store.dispatch({type: "UPDATE_ACCESS_TOKEN", token: result.accessToken});
+                        this.fetch();
+                    })
+
+
             })
 
 
@@ -109,7 +123,7 @@ export class ListProductsComponent implements OnInit, OnChanges {
         .put(url, product)
         .subscribe(() => {
 
-          this.selectedProduct = null;
+          //this.selectedProduct = null;
           this.fetch();
 
         }, () => {

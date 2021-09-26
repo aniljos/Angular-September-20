@@ -32,7 +32,8 @@ export class LoginComponent implements OnInit {
         this.store.dispatch({type: "SET_AUTH", payload: {
           isAuthenticated: true,
           userName: this.username,
-          accessToken: data.accessToken
+          accessToken: data.accessToken,
+          refreshToken: data.refreshToken
         }});
 
         this.router.navigate(["/products"]);
@@ -45,7 +46,8 @@ export class LoginComponent implements OnInit {
         this.store.dispatch({type: "SET_AUTH", payload: {
           isAuthenticated: false,
           userName: "",
-          accessToken:""
+          accessToken:"",
+          refreshToken: ""
         }});
       })
   }

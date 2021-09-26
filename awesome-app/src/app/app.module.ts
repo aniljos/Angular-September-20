@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,6 +19,8 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { authReducer, cartReducer } from './store/reducers';
+import { TokenInterceptorService } from './interceptors/token-interceptor.service';
+import { ChangeDetectionComponent, SimpleMessageComponent } from './change-detection/change-detection.component';
 
 //configure the routes(mapping of the routes(path) to the views(components))
 
@@ -27,6 +29,7 @@ const routes: Routes = [
   {path: "home", component: HelloComponent},
   {path: "binding", component: DataBindingComponent},
   {path: "search", component: SearchComponent},
+  {path: "change", component: ChangeDetectionComponent},
   {path: "products", loadChildren: () => import('./product/product.module').then(m => m.ProductModule)},
   {path: "", redirectTo: "/home", pathMatch: "full"},
   {path: "**", component: RouteNotFoundComponent},
@@ -35,7 +38,8 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent, HelloComponent, DataBindingComponent, SearchComponent, RouteNotFoundComponent
+    AppComponent, HelloComponent, DataBindingComponent, SearchComponent, 
+        RouteNotFoundComponent, ChangeDetectionComponent, SimpleMessageComponent
   ],
   imports: [
     BrowserModule, 
@@ -50,7 +54,10 @@ const routes: Routes = [
     StoreModule.forRoot({auth: authReducer, cart: cartReducer}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
-  providers: [{provide: DataService, useClass: DataServiceImpl}],
+  providers: [
+      {provide: DataService, useClass: DataServiceImpl},
+      {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true}],
+      
   bootstrap: [AppComponent]
 })
 export class AppModule { }
