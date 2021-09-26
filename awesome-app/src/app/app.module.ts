@@ -21,6 +21,18 @@ import { environment } from '../environments/environment';
 import { authReducer, cartReducer } from './store/reducers';
 import { TokenInterceptorService } from './interceptors/token-interceptor.service';
 import { ChangeDetectionComponent, SimpleMessageComponent } from './change-detection/change-detection.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FeedbackComponent } from './feedback/feedback.component';
+
+
+import { MatSliderModule } from '@angular/material/slider';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+
+
 
 //configure the routes(mapping of the routes(path) to the views(components))
 
@@ -30,6 +42,7 @@ const routes: Routes = [
   {path: "binding", component: DataBindingComponent},
   {path: "search", component: SearchComponent},
   {path: "change", component: ChangeDetectionComponent},
+  {path: "feedback", component: FeedbackComponent},
   {path: "products", loadChildren: () => import('./product/product.module').then(m => m.ProductModule)},
   {path: "", redirectTo: "/home", pathMatch: "full"},
   {path: "**", component: RouteNotFoundComponent},
@@ -39,7 +52,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent, HelloComponent, DataBindingComponent, SearchComponent, 
-        RouteNotFoundComponent, ChangeDetectionComponent, SimpleMessageComponent
+        RouteNotFoundComponent, ChangeDetectionComponent, SimpleMessageComponent, FeedbackComponent
   ],
   imports: [
     BrowserModule, 
@@ -52,11 +65,20 @@ const routes: Routes = [
     AuthModule,
     AppSharedModule,
     StoreModule.forRoot({auth: authReducer, cart: cartReducer}),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
+    BrowserAnimationsModule,
+    MatSliderModule, MatInputModule, MatIconModule, MatFormFieldModule, MatDatepickerModule
   ],
   providers: [
       {provide: DataService, useClass: DataServiceImpl},
       {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true}],
+      
       
   bootstrap: [AppComponent]
 })

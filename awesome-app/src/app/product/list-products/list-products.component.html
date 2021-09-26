@@ -22,7 +22,7 @@
     <tbody>
         <!-- Iterate over data and generate <tr> for each item -->
         <!--  ngFor is based on the for-of(ES6) -->
-        <tr *ngFor="let item of data | productFilter : searchKey; index as i; even as even; odd as odd;" 
+        <tr *ngFor="let item of data | productFilter : searchKey; index as i; even as even; odd as odd; trackBy: trackById" 
                                                         [ngClass]="{oddCls: odd, evenCls: even}">
             <td>{{i}}</td>
             <td>{{item.id}}</td>

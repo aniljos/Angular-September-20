@@ -1,11 +1,12 @@
 import { Component, OnInit, Input, 
-    OnChanges, SimpleChanges, OnDestroy, EventEmitter, Output } from '@angular/core';
+    OnChanges, SimpleChanges, OnDestroy, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
 import { Product } from '../../model/product';
 
 @Component({
   selector: 'app-edit-product',
   templateUrl: './edit-product.component.html',
-  styleUrls: ['./edit-product.component.css']
+  styleUrls: ['./edit-product.component.css'],
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class EditProductComponent implements OnInit, OnChanges, OnDestroy {
 

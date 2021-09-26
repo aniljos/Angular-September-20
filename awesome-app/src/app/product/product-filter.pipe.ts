@@ -3,12 +3,14 @@ import { Product } from '../model/product';
 
 // *ngFor="let item of data | productFilter : searchKey;
 @Pipe({
-  name: 'productFilter'
+  name: 'productFilter',
+  pure: true
 })
 export class ProductFilterPipe implements PipeTransform {
 
   transform(input: Array<Product>, searchKey: string): Array<Product> {
 
+    console.log("ProductFilterPipe transform");
     if(!searchKey){
       return input;
     }

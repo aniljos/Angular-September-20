@@ -11,8 +11,8 @@ import { environment } from '../../../environments/environment';
 })
 export class LoginComponent implements OnInit {
 
-  public username: string = "";
-  public password: string = "";
+  public username: string = "abc";
+  public password: string = "abc@123";
   public message: string = "";
 
   constructor(private http: HttpClient, 

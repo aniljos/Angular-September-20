@@ -136,5 +136,7 @@ export class ListProductsComponent implements OnInit, OnChanges {
     this.selectedProduct = null;
   }
 
-
+  trackById(index: number, product: Product){
+    return product.id;
+  }
 }
